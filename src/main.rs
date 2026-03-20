@@ -107,7 +107,7 @@ fn main() {
             .expect("Invalid size.");
 
     let mode_8bit = args.next()
-            .expect("Needs 3 arguments.");
+            .expect("Needs 4 arguments.");
     let mode_8bit = match mode_8bit.as_str() {
         "full" => false,
         "8bit" => true,
