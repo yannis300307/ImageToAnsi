@@ -1,7 +1,6 @@
-use core::error;
-use std::{clone, env, path::Path, process::exit};
+use std::{env, path::Path, process::exit};
 
-use image::{DynamicImage, GenericImageView, ImageBuffer, ImageReader, Rgba, imageops::resize};
+use image::{GenericImageView, ImageBuffer, ImageReader, Rgba, imageops::resize};
 
 /// Convert a full rgb color to the nearest 8 bit color escape code
 fn color8(r: u8, g: u8, b: u8) -> usize {
@@ -116,8 +115,8 @@ fn draw_image(picture: &Path, width: u32, mode_8bit: bool) {
             // Fetch the pixel rgb
             let pixel = processed.get_pixel(x, y);
             let rgb1 = (pixel.0[0], pixel.0[1], pixel.0[2]);
-            let pixel = processed.get_pixel(x, y + 1);
             let rgb2 = if y < processed.dimensions().1 - 1 {
+                let pixel = processed.get_pixel(x, y + 1);
                 Some((pixel.0[0], pixel.0[1], pixel.0[2]))
             } else {
                 None
